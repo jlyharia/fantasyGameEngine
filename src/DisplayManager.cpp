@@ -39,7 +39,7 @@ GLFWwindow* DisplayManager::createDisplay() {
         exit(EXIT_FAILURE);
     }
     glfwMakeContextCurrent(window);
-
+    glViewport(0, 0, 720, 480);
     // Load the OpenGL functions.
     std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << '\n';
     std::cout << "GL_SHADING_LANGUAGE_VERSION: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << '\n';
@@ -63,7 +63,7 @@ GLFWwindow* DisplayManager::createDisplay() {
 // Sync fps
 // http://forum.lwjgl.org/index.php?topic=5653.0
 void DisplayManager::updateDisplay() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 
     glfwPollEvents();
 
@@ -78,7 +78,7 @@ void DisplayManager::updateDisplay() {
  * This closes the window when the game is closed.
  */
 DisplayManager::~DisplayManager() {
-    std::cout << "Destructor of DisplayManager invoked..." << '\n';
+    std::cout << "Destructor of DisplayManager is invoked..." << '\n';
     glfwDestroyWindow(this->window);
     glfwTerminate();
     std::cout << "GLFW windows close" << '\n';

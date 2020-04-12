@@ -24,7 +24,6 @@ message("-- CMAKE_SOURCE_DIR = " ${CMAKE_SOURCE_DIR})
 
 set(HEADER_FILES
         ${HEADER_FILES}
-        ${CMAKE_SOURCE_DIR}/src/gl_platform.hpp
         ${CMAKE_SOURCE_DIR}/src/shaderloader.hpp
         ${CMAKE_SOURCE_DIR}/src/file_system_utils.hpp
         ${CMAKE_SOURCE_DIR}/src/GLRenderContext.hpp
@@ -43,11 +42,13 @@ set(HEADER_FILES
         ${CMAKE_SOURCE_DIR}/src/model/Vertex.hpp
         ${CMAKE_SOURCE_DIR}/src/model/MeshV2.cpp src/model/MeshV2.hpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/CubeHandler.hpp
-        ${CMAKE_SOURCE_DIR}/src/DisplayManager.hpp)
+        ${CMAKE_SOURCE_DIR}/src/DisplayManager.hpp
+        ${CMAKE_SOURCE_DIR}/src/Loader.hpp
+        ${CMAKE_SOURCE_DIR}/src/RawModel.hpp
+        ${CMAKE_SOURCE_DIR}/src/Renderer.hpp)
 
 set(SOURCE_FILES
         ${SOURCE_FILES}
-        ${CMAKE_SOURCE_DIR}/src/gl_platform.cpp
         ${CMAKE_SOURCE_DIR}/src/shaderloader.cpp
         ${CMAKE_SOURCE_DIR}/src/gl_handler.cpp
         ${CMAKE_SOURCE_DIR}/src/shader_loader.cpp
@@ -58,7 +59,10 @@ set(SOURCE_FILES
         ${CMAKE_SOURCE_DIR}/src/modelLoader/AssimpModelLoader.cpp
         ${CMAKE_SOURCE_DIR}/src/model/Vertex.cpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/CubeHandler.cpp
-        ${CMAKE_SOURCE_DIR}/src/DisplayManager.cpp)
+        ${CMAKE_SOURCE_DIR}/src/DisplayManager.cpp
+        ${CMAKE_SOURCE_DIR}/src/Loader.cpp
+        ${CMAKE_SOURCE_DIR}/src/RawModel.cpp
+        ${CMAKE_SOURCE_DIR}/src/Renderer.cpp)
 
 
 message("-- Generator is " ${CMAKE_GENERATOR})
