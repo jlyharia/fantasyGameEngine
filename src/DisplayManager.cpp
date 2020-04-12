@@ -20,7 +20,7 @@ void DisplayManager::key_callback(GLFWwindow *window, int key, int scancode, int
  * "glViewport" we tell OpenGL which part of the window we want to render
  * our game onto. We indicated that we want to use the entire window.
  */
-GLFWwindow* DisplayManager::createDisplay() {
+GLFWwindow *DisplayManager::createDisplay() {
     glfwSetErrorCallback(error_callback);
     // GLFW
     if (!glfwInit())
@@ -29,8 +29,8 @@ GLFWwindow* DisplayManager::createDisplay() {
 
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     // init glfw windows
     this->window = glfwCreateWindow(WIDTH, HEIGHT, TITLE, nullptr, nullptr);
 
@@ -39,20 +39,27 @@ GLFWwindow* DisplayManager::createDisplay() {
         exit(EXIT_FAILURE);
     }
     glfwMakeContextCurrent(window);
-    glViewport(0, 0, 720, 480);
+
     // Load the OpenGL functions.
     std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << '\n';
     std::cout << "GL_SHADING_LANGUAGE_VERSION: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << '\n';
     std::cout << "GL_VENDOR: " << glGetString(GL_VENDOR) << '\n';
     std::cout << "GL_RENDERER: " << glGetString(GL_RENDERER) << '\n';
     std::cout << "GLFW Version: " << glfwGetVersionString() << '\n';
+
+    // Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions
+    glewExperimental = GL_TRUE;
     glewInit();
 
     glEnable(GL_DEPTH_TEST);
     glfwSetKeyCallback(window, key_callback);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     return window;
 }
 
+void DisplayManager::framebuffer_size_callback(GLFWwindow *window, int width, int height) {
+    glViewport(0, 0, width, height);
+}
 /**
  * This method is used to update the display at the end of every frame. When
  * we have set up a rendering process this method will display whatever
@@ -63,7 +70,6 @@ GLFWwindow* DisplayManager::createDisplay() {
 // Sync fps
 // http://forum.lwjgl.org/index.php?topic=5653.0
 void DisplayManager::updateDisplay() {
-
 
     glfwPollEvents();
 

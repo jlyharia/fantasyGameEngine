@@ -21,8 +21,8 @@ include_directories(${TEST_SOURCE_DIR}
 ADD_TEST_CASE(ShaderLoaderTest)
 ADD_TEST_CASE(MeshTest)
 ADD_TEST_CASE(AssimpTest)
-ADD_TEST_CASE(BoostLogTest)
-ADD_TEST_CASE(BoostLogSampleTest)
+#ADD_TEST_CASE(BoostLogTest)
+#ADD_TEST_CASE(BoostLogSampleTest)
 
 add_test(NAME testName
         COMMAND -test)

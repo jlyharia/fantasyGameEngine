@@ -27,7 +27,7 @@ set(HEADER_FILES
         ${CMAKE_SOURCE_DIR}/src/shaderloader.hpp
         ${CMAKE_SOURCE_DIR}/src/file_system_utils.hpp
         ${CMAKE_SOURCE_DIR}/src/GLRenderContext.hpp
-        ${CMAKE_SOURCE_DIR}/src/gl_handler.hpp
+#        ${CMAKE_SOURCE_DIR}/src/gl_handler.hpp
         ${CMAKE_SOURCE_DIR}/src/VertexShaderType.hpp
         ${CMAKE_SOURCE_DIR}/src/FragmentShaderType.hpp
         ${CMAKE_SOURCE_DIR}/src/shader_loader.hpp
@@ -50,7 +50,7 @@ set(HEADER_FILES
 set(SOURCE_FILES
         ${SOURCE_FILES}
         ${CMAKE_SOURCE_DIR}/src/shaderloader.cpp
-        ${CMAKE_SOURCE_DIR}/src/gl_handler.cpp
+#        ${CMAKE_SOURCE_DIR}/src/gl_handler.cpp
         ${CMAKE_SOURCE_DIR}/src/shader_loader.cpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/EBO_sample_handler.cpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/Simple_triangle_handler.cpp

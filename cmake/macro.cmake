@@ -1,5 +1,6 @@
 # Find module
 macro(include_module name)
+    message('include ${name}')
     find_package(${name} REQUIRED)
     if (NOT ${name}_FOUND)
         message(FATAL_ERROR "Package ${name} not found")
@@ -13,7 +14,17 @@ endmacro()
 
 macro(include_OpenGL)
     IF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-        include_module("OPENGL")
+
+        find_package(OpenGL REQUIRED)
+        if (NOT OpenGL_FOUND)
+            message(FATAL_ERROR "Package OpenGL not found")
+        endif (NOT OpenGL_FOUND)
+
+        # OpenGL need to use upper case here
+        # -D
+        add_definitions(${OPENGL_DEFINITIONS})
+        include_directories(${OPENGL_INCLUDE_DIRS})
+        set(LIBRARIES ${LIBRARIES} ${OPENGL_LIBRARIES})
     else (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
         find_package(OpenGL REQUIRED)
         if (${OPENGL_FOUND})

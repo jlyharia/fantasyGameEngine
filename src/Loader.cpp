@@ -15,11 +15,12 @@
 	 * @return The loaded model.
 	 */
 
-RawModel Loader::loadToVAO(std::vector<float> positions) {
+RawModel Loader::loadToVAO(std::vector<float> positions, std::vector<unsigned int> indices) {
     int vaoID = createVAO();
+    bindIndicesBuffer(indices);
     storeDataInAttributeList(0, positions);
     unbindVAO();
-    return RawModel(vaoID, positions.size() / 3);
+    return RawModel(vaoID, indices.size());
 }
 
 /**
@@ -27,7 +28,7 @@ RawModel Loader::loadToVAO(std::vector<float> positions) {
  * located in video memory.
  */
 Loader::~Loader() {
-    std::cout << "Destructor of Load is invoked..\n";
+    std::cout << "Destructor of Load is invoked...\n";
     glDeleteVertexArrays(this->vaoList.size(), &this->vaoList[0]);
     glDeleteBuffers(this->vboList.size(), &this->vboList[0]);
 }
@@ -63,9 +64,8 @@ void Loader::storeDataInAttributeList(int attributeNumber, std::vector<float> da
     std::cout << "vbo id: " << vboId << " is generated\n";
     this->vboList.push_back(vboId);
     glBindBuffer(GL_ARRAY_BUFFER, vboId);
-
     glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(float), &data[0], GL_STATIC_DRAW);
-    glVertexAttribPointer(attributeNumber, 3, GL_FLOAT, false, 0, 0);
+    glVertexAttribPointer(attributeNumber, 3, GL_FLOAT, GL_FALSE, 0, (GLubyte *) NULL);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
@@ -78,31 +78,12 @@ void Loader::unbindVAO() {
     glBindVertexArray(0);
 }
 
-/**
- * Before we can store data in a VBO it needs to be in a certain format: in
- * a buffer. In this case we will use a float buffer because the data we
- * want to store is float data. If we were storing int data we would use an
- * IntBuffer.
- *
- * First and empty buffer of the correct size is created. You can think of a
- * buffer as basically an array with a pointer. After putting the necessary
- * data into the buffer the pointer will have increased so that it points at
- * the first empty element of the array. This is so that we could add more
- * data to the buffer if we wanted and it wouldn't overwrite the data we've
- * already put in. However, we're done with storing data and we want to make
- * the buffer ready for reading. To do this we need to make the pointer
- * point to the start of the data, so that OpenGL knows where in the buffer
- * to start reading. The "flip()" method does just that, putting the pointer
- * back to the start of the buffer.
- *
- * @param data
- *            - The float data that is going to be stored in the buffer.
- * @return The FloatBuffer containing the data. This float buffer is ready
- *         to be loaded into a VBO.
- */
-//FloatBuffer storeDataInFloatBuffer(float[] data) {
-//    FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
-//    buffer.put(data);
-//    buffer.flip();
-//    return buffer;
-//}
+void Loader::bindIndicesBuffer(std::vector<unsigned int> indices) {
+    GLuint vboId = 0;
+    glGenBuffers(1, &vboId);
+    std::cout << "vbo id: " << vboId << " is generated\n";
+    this->vboList.push_back(vboId);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboId);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0],
+                 GL_STATIC_DRAW);
+}

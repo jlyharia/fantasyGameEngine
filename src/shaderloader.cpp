@@ -112,7 +112,6 @@ void printProgramInfoLog(GLuint obj) {
 }
 
 GLuint createShaders(std::string file_name) {
-
     char *vs = NULL, *fs = NULL;
 
     GLuint v = glCreateShader(GL_VERTEX_SHADER);  //shader step 1. create shader  - vertex shader
@@ -126,6 +125,10 @@ GLuint createShaders(std::string file_name) {
     const char *vv = vs;
     const char *ff = fs;
 
+    if (vs == NULL || fs == NULL) {
+        std::cout << "Create shader program is fail: shader file not found\n";
+        return -1;
+    }
     glShaderSource(v, 1, &vv, NULL);//shader step 2. shader source - vertex shader
     glShaderSource(f, 1, &ff, NULL);//shader step 2. shader source - fragment shader
 

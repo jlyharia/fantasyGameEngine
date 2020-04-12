@@ -16,7 +16,7 @@ class Loader {
 public:
     ~Loader();
 
-    RawModel loadToVAO(std::vector<float> positions);
+    RawModel loadToVAO(std::vector<float> positions, std::vector<unsigned int> indices);
 
     void unbindVAO();
 
@@ -61,6 +61,8 @@ private:
 
 
     GLuint createVAO();
+
+    void bindIndicesBuffer(std::vector<unsigned int> indices);
 };
 
 

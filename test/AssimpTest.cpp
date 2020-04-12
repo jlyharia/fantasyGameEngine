@@ -14,7 +14,7 @@ using namespace std;
 
 
 TEST (Assimp, mesh) {
-    BOOST_LOG_TRIVIAL(debug) << "C++ version: " << __cplusplus;
+//    BOOST_LOG_TRIVIAL(debug) << "C++ version: " << __cplusplus;
 //    std::string path = "../../geometric_data/cube.obj";
     std::string pfile = "../../geometric_data/cube.obj";
     const MeshV2 &mesh = AssimpModelLoader::createMesh(pfile);

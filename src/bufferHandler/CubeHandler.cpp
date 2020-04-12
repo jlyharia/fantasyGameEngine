@@ -28,7 +28,7 @@ void CubeHandler::prepare_buffer(GLRenderContext &glRenderContext) {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh.getIndexList().size() * sizeof(unsigned int), &mesh.getIndexList()[0],
                  GL_DYNAMIC_DRAW);
 
-    GLuint shader_programme = createShaders("resources/shaders/basic2");
+    GLuint shader_programme = createShaders("shaders/basic2");
     glUseProgram(shader_programme);
     glRenderContext.setVao(vao);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

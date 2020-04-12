@@ -31,15 +31,15 @@ void EBO_sample_handler::prepare_buffer(GLRenderContext &glRenderContext) {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_DYNAMIC_DRAW);
 
-    GLuint shader_programme = createShaders("resources/shaders/basic2");
+    GLuint shader_programme = createShaders("/Users/johnny/Code/gameEngine/FantasyGameEngine/src/shaders/basic2");
     glUseProgram(shader_programme);
     glRenderContext.setVao(vao);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+//    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
 void EBO_sample_handler::draw(GLRenderContext &glRenderContext) {
     glBindVertexArray(glRenderContext.getVao());
     // draw points 0-3 from the currently bound VAO with current in-use shader
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+//    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     // update other events like input handling
 }

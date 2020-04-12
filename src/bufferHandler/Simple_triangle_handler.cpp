@@ -3,7 +3,7 @@
 //
 #include "../shaderloader.hpp"
 #include "Simple_triangle_handler.hpp"
-
+#include <GLFW/glfw3.h>
 void Simple_triangle_handler::prepare_buffer(GLRenderContext &glRenderContext) {
     float points[] = {
             0.0f, 0.5f, 0.0f,
@@ -24,9 +24,11 @@ void Simple_triangle_handler::prepare_buffer(GLRenderContext &glRenderContext) {
     glEnableVertexAttribArray(0);
 
 
-    GLuint shader_programme = createShaders("resources/shaders/basic2");
-    glUseProgram(shader_programme);
-    glRenderContext.setVao(vao);
+    GLuint shader_programme = createShaders("shaders/basic2");
+    if(shader_programme >0) {
+        glUseProgram(shader_programme);
+        glRenderContext.setVao(vao);
+    }
 }
 
 void Simple_triangle_handler::draw(GLRenderContext &glRenderContext) {

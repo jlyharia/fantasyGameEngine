@@ -11,23 +11,23 @@
 using namespace std;
 
 MeshV2 AssimpModelLoader::createMesh(std::string filePath) {
-    BOOST_LOG_TRIVIAL(debug) << "model file path:" << filePath;
+//    BOOST_LOG_TRIVIAL(debug) << "model file path:" << filePath;
     Assimp::Importer importer;
     const aiScene *sc = importer.ReadFile(filePath,
                                           aiProcess_Triangulate |
                                           aiProcess_FlipUVs |
                                           aiProcess_JoinIdenticalVertices);
-    BOOST_LOG_TRIVIAL(debug) << "Number of Meshes = " << sc->mNumMeshes;
+//    BOOST_LOG_TRIVIAL(debug) << "Number of Meshes = " << sc->mNumMeshes;
     std::vector<unsigned int> indexList;
     std::vector<float> vertexList;
     std::vector<float> normalList;
     if (sc->HasMeshes()) {
         aiMesh *aiMesh = *(sc->mMeshes);
 
-        BOOST_LOG_TRIVIAL(debug) << "Number of Meshes = " << sc->mNumMeshes;
+//        BOOST_LOG_TRIVIAL(debug) << "Number of Meshes = " << sc->mNumMeshes;
         for (unsigned int i = 0; i < sc->mNumMeshes; ++i) {
             // Faces (index / 3)
-            BOOST_LOG_TRIVIAL(debug) << "Number of Faces = " << aiMesh->mNumFaces;
+//            BOOST_LOG_TRIVIAL(debug) << "Number of Faces = " << aiMesh->mNumFaces;
             for (unsigned int t = 0; t < aiMesh->mNumFaces; ++t) {
                 unsigned int *ver = aiMesh->mFaces[t].mIndices;
                 indexList.push_back(ver[0]);
@@ -56,7 +56,7 @@ MeshV2 AssimpModelLoader::createMesh(std::string filePath) {
             }
         }
     } else {
-        BOOST_LOG_TRIVIAL(error) << "Error: No meshes found";
+//        BOOST_LOG_TRIVIAL(error) << "Error: No meshes found";
     }
     MeshV2 mesh;
     mesh.setNormalList(normalList);
