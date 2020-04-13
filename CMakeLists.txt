@@ -25,13 +25,8 @@ message("-- CMAKE_SOURCE_DIR = " ${CMAKE_SOURCE_DIR})
 set(HEADER_FILES
         ${HEADER_FILES}
         ${CMAKE_SOURCE_DIR}/src/shaderloader.hpp
-        ${CMAKE_SOURCE_DIR}/src/file_system_utils.hpp
         ${CMAKE_SOURCE_DIR}/src/GLRenderContext.hpp
 #        ${CMAKE_SOURCE_DIR}/src/gl_handler.hpp
-        ${CMAKE_SOURCE_DIR}/src/VertexShaderType.hpp
-        ${CMAKE_SOURCE_DIR}/src/FragmentShaderType.hpp
-        ${CMAKE_SOURCE_DIR}/src/shader_loader.hpp
-        ${CMAKE_SOURCE_DIR}/src/ShaderType.hpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/EBO_sample_handler.hpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/BufferHandler.hpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/Simple_triangle_handler.hpp
@@ -45,13 +40,14 @@ set(HEADER_FILES
         ${CMAKE_SOURCE_DIR}/src/DisplayManager.hpp
         ${CMAKE_SOURCE_DIR}/src/Loader.hpp
         ${CMAKE_SOURCE_DIR}/src/RawModel.hpp
-        ${CMAKE_SOURCE_DIR}/src/Renderer.hpp)
+        ${CMAKE_SOURCE_DIR}/src/Renderer.hpp
+        ${CMAKE_SOURCE_DIR}/src/ShaderProgram.hpp
+        ${CMAKE_SOURCE_DIR}/src/StaticShader.hpp)
 
 set(SOURCE_FILES
         ${SOURCE_FILES}
         ${CMAKE_SOURCE_DIR}/src/shaderloader.cpp
 #        ${CMAKE_SOURCE_DIR}/src/gl_handler.cpp
-        ${CMAKE_SOURCE_DIR}/src/shader_loader.cpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/EBO_sample_handler.cpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/Simple_triangle_handler.cpp
         ${CMAKE_SOURCE_DIR}/src/model/Mesh.cpp
@@ -62,7 +58,9 @@ set(SOURCE_FILES
         ${CMAKE_SOURCE_DIR}/src/DisplayManager.cpp
         ${CMAKE_SOURCE_DIR}/src/Loader.cpp
         ${CMAKE_SOURCE_DIR}/src/RawModel.cpp
-        ${CMAKE_SOURCE_DIR}/src/Renderer.cpp)
+        ${CMAKE_SOURCE_DIR}/src/Renderer.cpp
+        ${CMAKE_SOURCE_DIR}/src/ShaderProgram.cpp
+        ${CMAKE_SOURCE_DIR}/src/StaticShader.cpp)
 
 
 message("-- Generator is " ${CMAKE_GENERATOR})

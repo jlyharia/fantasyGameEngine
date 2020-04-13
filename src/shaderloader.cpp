@@ -15,22 +15,15 @@
 using namespace std;
 
 char *textFileRead(char *fn) {
-
-
     FILE *fp;
     char *content = NULL;
-
     int count = 0;
-
     if (fn != NULL) {
         fp = fopen(fn, "rt");
-
         if (fp != NULL) {
-
             fseek(fp, 0, SEEK_END);
             count = ftell(fp);
             rewind(fp);
-
             if (count > 0) {
                 content = (char *) malloc(sizeof(char) * (count + 1));
                 count = fread(content, sizeof(char), count, fp);
@@ -105,7 +98,7 @@ void printProgramInfoLog(GLuint obj) {
     if (infologLength > 0) {
         infoLog = (char *) malloc(infologLength);
         glGetProgramInfoLog(obj, infologLength, &charsWritten, infoLog);
-        //glGetProgramInfoLog  ßX Returns the information log for a program object
+        //glGetProgramInfoLog  X Returns the information log for a program object
         printf("%s\n", infoLog);
         free(infoLog);
     }
@@ -113,7 +106,7 @@ void printProgramInfoLog(GLuint obj) {
 
 GLuint createShaders(std::string file_name) {
     char *vs = NULL, *fs = NULL;
-
+    int asdf = GL_FRAGMENT_SHADER;
     GLuint v = glCreateShader(GL_VERTEX_SHADER);  //shader step 1. create shader  - vertex shader
     GLuint f = glCreateShader(GL_FRAGMENT_SHADER);//shader step 1. create shader  - fragment shader
 

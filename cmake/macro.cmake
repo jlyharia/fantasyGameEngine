@@ -1,6 +1,5 @@
 # Find module
 macro(include_module name)
-    message('include ${name}')
     find_package(${name} REQUIRED)
     if (NOT ${name}_FOUND)
         message(FATAL_ERROR "Package ${name} not found")
