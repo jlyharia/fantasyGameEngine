@@ -19,6 +19,8 @@ include_module(GLEW)
 include_module(GLM)
 include_module(GLFW)
 include_module(ASSIMP)
+include_module(PNG)
+include_module(png++)
 include_Boost()
 message("-- CMAKE_SOURCE_DIR = " ${CMAKE_SOURCE_DIR})
 
@@ -26,7 +28,7 @@ set(HEADER_FILES
         ${HEADER_FILES}
         ${CMAKE_SOURCE_DIR}/src/shaderloader.hpp
         ${CMAKE_SOURCE_DIR}/src/GLRenderContext.hpp
-#        ${CMAKE_SOURCE_DIR}/src/gl_handler.hpp
+        ${CMAKE_SOURCE_DIR}/src/BoostLoggingMacro.hpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/EBO_sample_handler.hpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/BufferHandler.hpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/Simple_triangle_handler.hpp
