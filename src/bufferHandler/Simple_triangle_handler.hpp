@@ -6,6 +6,7 @@
 #define FANTASY_SIMPLE_TRIANGLE_HANDLER_HPP
 
 #include <GL/glew.h>
+//#include "../glad/glad.h"
 #include "BufferHandler.hpp"
 #include <iostream>
 class Simple_triangle_handler : public BufferHandler {

@@ -6,9 +6,11 @@
 #define FANTASYGAMEENGINE_SHADERPROGRAM_HPP
 
 #include <GL/glew.h>
+//#include "glad/glad.h"
 #include <string>
 #include <iostream>
-
+#include <boost/log/trivial.hpp>
+#include <filesystem>
 class ShaderProgram {
 public:
     ShaderProgram(std::string vertexFile, std::string fragmentFile);

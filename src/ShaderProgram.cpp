@@ -50,7 +50,9 @@ GLuint ShaderProgram::createShaders(std::string file_name, int shaderType) {
     const char *vv = vs;
 
     if (vs == NULL) {
-        std::cout << "Create shader program is fail: shader file not found\n";
+        std::cout << "Create shader program is fail: shader file not found, file_name: "
+                  << file_name << '\n';
+        std::cout << "Current path is " << std::filesystem::current_path() << '\n';
         return -1;
     }
     glShaderSource(v, 1, &vv, NULL);//shader step 2. shader source - vertex shader

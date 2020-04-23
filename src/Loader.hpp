@@ -6,17 +6,28 @@
 #define FANTASYGAMEENGINE_LOADER_HPP
 
 #include <GL/glew.h>
-#include <OpenGL/OpenGL.h>
+//#include "glad/glad.h"
+//#include <OpenGL/OpenGL.h>
 #include <vector>
-#include "RawModel.hpp"
+#include "models/RawModel.hpp"
 #include <iostream>
+#include <string>
+#include <filesystem>
+#include "ImageLoader.hpp"
+
+
+//#include "stb_image.h"
 
 class Loader {
 
 public:
     ~Loader();
 
-    RawModel loadToVAO(std::vector<float> positions, std::vector<unsigned int> indices);
+    RawModel loadToVAO(std::vector<float> positions,
+                       std::vector<float> textureCoords,
+                       std::vector<unsigned int> indices);
+
+    GLuint loadTexture(std::string fileName);
 
     void unbindVAO();
 
@@ -53,13 +64,18 @@ public:
  *            - The geometry data to be stored in the VAO, in this case the
  *            positions of the vertices.
  */
-    void storeDataInAttributeList(int attributeNumber, std::vector<float> data);
+    void storeDataInAttributeList(int attributeNumber,
+                                  int coordinateSize,
+                                  std::vector<float> data);
 
 private:
     std::vector<GLuint> vaoList;
     std::vector<GLuint> vboList;
+    std::vector<GLuint> textureList;
 
-
+    /**
+     * @return The ID of the newly created VAO.
+     */
     GLuint createVAO();
 
     void bindIndicesBuffer(std::vector<unsigned int> indices);

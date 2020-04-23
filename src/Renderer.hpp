@@ -6,8 +6,8 @@
 #define FANTASYGAMEENGINE_RENDERER_HPP
 
 #include <GL/glew.h>
-#include "RawModel.hpp"
-
+//#include "glad/glad.h"
+#include "models/TexturedModel.hpp"
 
 /**
  * Handles the rendering of a model to the screen.
@@ -39,7 +39,7 @@ public:
      * @param model
      *            - The model to be rendered.
      */
-    void render(RawModel model);
+    void render(TexturedModel texturedModel);
 };
 
 

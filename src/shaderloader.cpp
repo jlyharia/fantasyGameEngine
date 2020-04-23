@@ -10,6 +10,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include <GL/glew.h>
+//#include "glad/glad.h"
 #include <iostream>
 
 using namespace std;
@@ -106,7 +107,6 @@ void printProgramInfoLog(GLuint obj) {
 
 GLuint createShaders(std::string file_name) {
     char *vs = NULL, *fs = NULL;
-    int asdf = GL_FRAGMENT_SHADER;
     GLuint v = glCreateShader(GL_VERTEX_SHADER);  //shader step 1. create shader  - vertex shader
     GLuint f = glCreateShader(GL_FRAGMENT_SHADER);//shader step 1. create shader  - fragment shader
 

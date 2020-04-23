@@ -5,7 +5,7 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
-#include <boost/log/trivial.hpp>
+//#include <boost/log/trivial.hpp>
 #include <iostream>
 
 using namespace std;

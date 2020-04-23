@@ -6,6 +6,7 @@
 // or explicit are given
 //////////////////////////////////////////////////////////////////////
 #include <GL/glew.h>
+//#include "glad/glad.h"
 #include <string>
 
 char *textFileRead(char *);
