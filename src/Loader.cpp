@@ -110,18 +110,13 @@ GLuint Loader::loadTexture(std::string fileName) {
     // Give the image to OpenGL
     auto img = ImageLoader::loadImg(fileName);
 
-//    int width, height, nrChannels;
-//    // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
-//    stbi_set_flip_vertically_on_load(true);
-//    unsigned char *data = stbi_load(std::filesystem::path("resources/texture/pointillist.bmp").c_str(), &width, &height,
-//                                    &nrChannels, 0);
     if (img->getData()) {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img->getWidth(), img->getHeight(), 0, GL_RGB, GL_UNSIGNED_BYTE, img->getData());
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img->getWidth(), img->getHeight(),
+                0, GL_RGB, GL_UNSIGNED_BYTE, img->getData());
         glGenerateMipmap(GL_TEXTURE_2D);
     } else {
         std::cout << "Failed to load texture" << std::endl;
     }
-//    delete img;
     this->textureList.push_back(textureId);
     return textureId;
 }

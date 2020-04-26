@@ -11,25 +11,35 @@
 #include <iostream>
 #include <boost/log/trivial.hpp>
 #include <filesystem>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 class ShaderProgram {
 public:
     ShaderProgram(std::string vertexFile, std::string fragmentFile);
 
-    void start();
+    void bindProgram();
 
-    void stop();
+    void unbindProgram();
 
     virtual ~ShaderProgram();
 
-protected:
-    virtual void bindAttributes() {};
+    virtual void getAllUniformLocations() = 0;
 
-    void bindAttribute(int attribute, std::string variableName);
+    int getProgramId() { return this->programId; }
+
+protected:
+    // With layout qualifier, you can forgo the use of glBindAttribLocation entirely
+    // https://www.khronos.org/opengl/wiki/Layout_Qualifier_(GLSL)
+
+    GLint getUniformLocation(std::string uniformName);
+
+    void loadUniform(GLint location, glm::mat4 matrix);
 
 private:
-    int programId;
-    int vertexShaderId;
-    int fragmentShaderId;
+    int programId = -1;
+    int vertexShaderId = -1;
+    int fragmentShaderId = -1;
 
 
     GLuint createShaders(std::string filename, int shaderType);

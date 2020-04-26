@@ -5,21 +5,43 @@
 #include "Renderer.hpp"
 
 
+Renderer::Renderer(std::shared_ptr<StaticShader> shader) {
+    this->projectionMatrix = Maths::createProjectionMatrix();
+    shader->bindProgram();
+    shader->loadProjectionMatrix(projectionMatrix);
+    shader->unbindProgram();
+    std::cout << "perspective matrix: \n" << projectionMatrix << std::endl;
+}
+
 void Renderer::prepare() {
+    glEnable(GL_DEPTH_TEST);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//    glClearColor(0.5, 0.7, 0.8, 1);
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 }
 
-void Renderer::render(TexturedModel texturedModel) {
-    RawModel model = texturedModel.getRawModel();
-    glBindVertexArray(model.getVaoId());
+void Renderer::render(Entity entity, StaticShader *shader) {
+    TexturedModel texturedModel = entity.getModel();
+    RawModel rawModel = texturedModel.getRawModel();
+    glBindVertexArray(rawModel.getVaoId());
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
+
+    glm::mat4 transformationMatrix = Maths::createTransformationMatrix(
+            entity.getPosition(),
+            entity.getRotX(),
+            entity.getRotY(),
+            entity.getRotZ(),
+            entity.getScale());
+    shader->loadTransformationMatrix(transformationMatrix);
+
     glActiveTexture(GL_TEXTURE0);
+
+
     glBindTexture(GL_TEXTURE_2D, texturedModel.getModelTexture().getTextureId());
-    glDrawElements(GL_TRIANGLES, model.getVertexCount(), GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, rawModel.getVertexCount(), GL_UNSIGNED_INT, 0);
+
+
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
     glBindVertexArray(0);

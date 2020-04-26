@@ -8,19 +8,29 @@
 
 #include "ShaderProgram.hpp"
 #include <string>
+#include <glm/glm.hpp>
+#include "entities/Camera.hpp"
+#include "toolbox/Maths.hpp"
 
 class StaticShader : public ShaderProgram {
 public:
     StaticShader() :
-    ShaderProgram("shaders/basic3.vs.glsl", "shaders/basic3.fs.glsl")
-    {};
+            ShaderProgram("shaders/basic3.vs.glsl", "shaders/basic3.fs.glsl") {};
 
-protected:
-    void bindAttributes() override;
+    void loadTransformationMatrix(glm::mat4 matrix);
+
+    void loadViewMatrix(Camera &camera);
+
+    void loadProjectionMatrix(glm::mat4 projection);
+
+    void getAllUniformLocations() override;
 
 private:
     const static std::string VERTEX_FILE;
     const static std::string FRAGMENT_FILE;
+    GLint location_transformationMatrix = -1;
+    GLint location_projectionMatrix = -1;
+    GLint location_viewMatrix = -1;
 };
 
 

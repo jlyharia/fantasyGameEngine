@@ -9,6 +9,7 @@
 #include "RawModel.hpp"
 #include "../texture/ModelTexture.hpp"
 
+
 class TexturedModel {
 public:
     TexturedModel(RawModel rawModel, ModelTexture modelTexture) :

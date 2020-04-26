@@ -52,7 +52,7 @@ GLFWwindow *DisplayManager::createDisplay() {
     glewExperimental = GL_TRUE;
     glewInit();
 
-    glEnable(GL_DEPTH_TEST);
+
     glfwSetKeyCallback(window, key_callback);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 //    if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {

@@ -12,34 +12,40 @@ ShaderProgram::ShaderProgram(std::string vertexFile, std::string fragmentFile) {
     glAttachShader(programId, fragmentShaderId);//program step 2. attach shader - fragment shader
     glValidateProgram(programId);
 
-    bindAttributes();
     glLinkProgram(programId);
-
     //---------Troubleshooting: The InfoLog - program------------
     printProgramInfoLog(programId);
 }
 
-void ShaderProgram::start() {
+
+GLint ShaderProgram::getUniformLocation(std::string uniformName) {
+    GLint loc = glGetUniformLocation(this->programId, uniformName.c_str());
+    if (loc < 0) {
+        std::cout << "Uniform: " << uniformName << " not found\n";
+    }
+    return loc;
+}
+
+void ShaderProgram::loadUniform(GLint location, glm::mat4 matrix) {
+    glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
+}
+
+void ShaderProgram::bindProgram() {
     glUseProgram(this->programId);
 }
 
-void ShaderProgram::stop() {
+void ShaderProgram::unbindProgram() {
     glUseProgram(0);
 }
 
 ShaderProgram::~ShaderProgram() {
     std::cout << "Destructor of ShaderProgram is invoked...\n";
-    stop();
+    unbindProgram();
     glDetachShader(programId, vertexShaderId);
     glDetachShader(programId, fragmentShaderId);
     glDeleteShader(vertexShaderId);
     glDeleteShader(fragmentShaderId);
     glDeleteProgram(programId);
-}
-
-
-void ShaderProgram::bindAttribute(int attribute, std::string variableName) {
-    glBindAttribLocation(programId, attribute, variableName.c_str());
 }
 
 GLuint ShaderProgram::createShaders(std::string file_name, int shaderType) {

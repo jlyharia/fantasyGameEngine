@@ -48,14 +48,19 @@ set(HEADER_FILES
         ${CMAKE_SOURCE_DIR}/src/models/TexturedModel.hpp
         ${CMAKE_SOURCE_DIR}/src/stb_image.h
         ${CMAKE_SOURCE_DIR}/src/Image.hpp
-        ${CMAKE_SOURCE_DIR}/src/glad/glad.h
-        ${CMAKE_SOURCE_DIR}/src/glad/khrplatform.h
+#        ${CMAKE_SOURCE_DIR}/src/glad/glad.h
+#        ${CMAKE_SOURCE_DIR}/src/glad/khrplatform.h
+        ${CMAKE_SOURCE_DIR}/src/GLHandler.hpp
+        ${CMAKE_SOURCE_DIR}/src/entities/Camera.hpp
+        ${CMAKE_SOURCE_DIR}/src/toolbox/Maths.hpp
+        ${CMAKE_SOURCE_DIR}/src/entities/Entity.hpp
+        ${CMAKE_SOURCE_DIR}/src/toolbox/DebugHelper.hpp
         )
 
 set(SOURCE_FILES
         ${SOURCE_FILES}
         ${CMAKE_SOURCE_DIR}/src/shaderloader.cpp
-#        ${CMAKE_SOURCE_DIR}/src/gl_handler.cpp
+        ${CMAKE_SOURCE_DIR}/src/GLHandler.cpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/EBO_sample_handler.cpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/Simple_triangle_handler.cpp
         ${CMAKE_SOURCE_DIR}/src/model/Mesh.cpp
@@ -73,7 +78,11 @@ set(SOURCE_FILES
         ${CMAKE_SOURCE_DIR}/src/models/TexturedModel.cpp
         ${CMAKE_SOURCE_DIR}/src/ImageLoader.cpp
         ${CMAKE_SOURCE_DIR}/src/Image.cpp
-        ${CMAKE_SOURCE_DIR}/src/glad/glad.c
+#        ${CMAKE_SOURCE_DIR}/src/glad/glad.c
+        ${CMAKE_SOURCE_DIR}/src/entities/Camera.cpp
+        ${CMAKE_SOURCE_DIR}/src/toolbox/Maths.cpp
+        ${CMAKE_SOURCE_DIR}/src/entities/Entity.cpp
+        ${CMAKE_SOURCE_DIR}/src/toolbox/DebugHelper.cpp
         )
 
 

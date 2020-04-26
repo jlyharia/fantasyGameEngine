@@ -14,13 +14,13 @@ using glm::vec4;
 using glm::mat4;
 using glm::mat3;
 
-class gl_handler {
+class GLHandler {
 public:
-    gl_handler() {}
+    GLHandler() {}
 
-    gl_handler(GLuint _loc_shader) : loc_shader(_loc_shader) {}
+    GLHandler(GLuint _loc_shader) : loc_shader(_loc_shader) {}
 
-    ~gl_handler() {}
+    ~GLHandler() {}
 
     int getUniformLocation(const char *uniformName);
 

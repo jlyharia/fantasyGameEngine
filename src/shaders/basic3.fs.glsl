@@ -1,7 +1,7 @@
 #version 330 core
 in vec2 pass_textureCoords;
 out vec4 frag_colour;
-
+in vec3 colour;
 uniform sampler2D textureSampler;
 void main() {
 

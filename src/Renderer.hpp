@@ -8,12 +8,18 @@
 #include <GL/glew.h>
 //#include "glad/glad.h"
 #include "models/TexturedModel.hpp"
-
+#include <glm/glm.hpp>
+#include "StaticShader.hpp"
+#include "entities/Entity.hpp"
+#include "toolbox/DebugHelper.hpp"
 /**
  * Handles the rendering of a model to the screen.
  */
 class Renderer {
 public:
+
+    Renderer(std::shared_ptr<StaticShader> shader);
+
     /**
 	 * This method must be called each frame, before any rendering is carried
 	 * out. It basically clears the screen of everything that was rendered last
@@ -39,7 +45,10 @@ public:
      * @param model
      *            - The model to be rendered.
      */
-    void render(TexturedModel texturedModel);
+    void render(Entity entity, StaticShader *shader);
+
+private:
+    glm::mat4 projectionMatrix;
 };
 
 
