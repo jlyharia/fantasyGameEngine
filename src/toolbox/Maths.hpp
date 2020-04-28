@@ -18,8 +18,6 @@ public:
                                                 const float rz,
                                                 const float scale);
 
-    static glm::mat4 createViewMatrix(Camera &camera);
-
     static glm::mat4 createProjectionMatrix();
 };
 

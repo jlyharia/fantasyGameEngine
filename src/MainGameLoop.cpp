@@ -12,24 +12,11 @@
 
 
 int main(int argc, char **argv) {
+
     DisplayManager dm;
-    Loader loader;
     GLFWwindow *window = dm.createDisplay();
     std::shared_ptr<StaticShader> shader = std::make_shared<StaticShader>();
     shader->getAllUniformLocations();
-//    int pid = shader->getProgramId();
-//    std::cout<<"program id = "<<pid<<std::endl;
-//    glm::mat4 mat = Maths::createTransformationMatrix(
-//            glm::vec3(-0.7, 0.0, 0.0),
-//            0.0f,
-//            0.0f,
-//            0.0f,
-//            1.0f);
-//    glUseProgram(pid);
-//    std::string matName ="transformationMatrix";
-//    int loc =glGetUniformLocation(pid, matName.c_str());
-//    std::cout<<"loc = "<<loc<<std::endl;
-//    glUniformMatrix4fv(loc, 1, GL_FALSE, &mat[0][0]);
 
 
     Renderer renderer(shader);
@@ -51,6 +38,8 @@ int main(int argc, char **argv) {
             1.0, 1.0,
             1.0, 0.0,
     };
+
+    Loader loader;
     RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
     std::string tex = "resources/texture/pointillist.bmp";
     ModelTexture texture(loader.loadTexture(tex));
@@ -58,16 +47,31 @@ int main(int argc, char **argv) {
     Entity entity(texturedModel, std::move(glm::vec3(-0.3, 0.3, -3)),
                   0.0f, 0.0f, 0.0f, 1.0f);
 
-    Camera camera;
+
+    float deltaTime = 0.0f;    // time between current frame and last frame
+    float lastFrame = 0.0f;
+    float currentFrame = 0.0f;
+    auto camera = dm.getCamera();
     while (!glfwWindowShouldClose(window)) {
+
+        // per-frame time logic
+        // --------------------
+        currentFrame = glfwGetTime();
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+
+        // input
+        dm.processInput(window, camera, deltaTime);
+
         /* Render here */
-        entity.increaseRotation(1.0f, 1.0f, 0.0f);
-//        camera.move();
+        entity.increaseRotation(0.3f, 1.0f, -1.0f);
+
+
+        shader->bindProgram();
+        // move camera
+        shader->loadViewMatrix(camera->GetViewMatrix());
 
         renderer.prepare();
-        shader->bindProgram();
-        shader->loadViewMatrix(camera);
-
 
         renderer.render(entity, shader.get());
         shader->unbindProgram();
@@ -75,4 +79,3 @@ int main(int argc, char **argv) {
     }
     return 0;
 }
-

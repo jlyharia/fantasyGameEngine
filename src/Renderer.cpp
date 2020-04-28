@@ -10,7 +10,6 @@ Renderer::Renderer(std::shared_ptr<StaticShader> shader) {
     shader->bindProgram();
     shader->loadProjectionMatrix(projectionMatrix);
     shader->unbindProgram();
-    std::cout << "perspective matrix: \n" << projectionMatrix << std::endl;
 }
 
 void Renderer::prepare() {

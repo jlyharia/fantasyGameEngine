@@ -20,16 +20,6 @@ glm::mat4 Maths::createTransformationMatrix(const glm::vec3 translation,
     return m;
 }
 
-glm::mat4 Maths::createViewMatrix(Camera &camera) {
-    // camera position
-    glm::vec3 eye(0.0f, 0.0f, 0.0f);
-    // camera look at
-    glm::vec3 center(0.0f, 0.0f, -1.0f);
-    // up vector
-    glm::vec3 up(0.0f, 1.0f, 0.0f);
-    glm::mat4 viewMatrix = glm::lookAt(eye, center, up);
-    return viewMatrix;
-}
 
 glm::mat4 Maths::createProjectionMatrix() {
     glm::mat4 projection = glm::perspective(

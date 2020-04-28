@@ -17,11 +17,11 @@ public:
     StaticShader() :
             ShaderProgram("shaders/basic3.vs.glsl", "shaders/basic3.fs.glsl") {};
 
-    void loadTransformationMatrix(glm::mat4 matrix);
+    void loadTransformationMatrix(glm::mat4 &matrix);
 
-    void loadViewMatrix(Camera &camera);
+    void loadViewMatrix(glm::mat4 &&matrix);
 
-    void loadProjectionMatrix(glm::mat4 projection);
+    void loadProjectionMatrix(glm::mat4 &projection);
 
     void getAllUniformLocations() override;
 

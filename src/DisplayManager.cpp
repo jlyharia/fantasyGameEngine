@@ -5,6 +5,7 @@
 #include "DisplayManager.hpp"
 
 
+
 void DisplayManager::error_callback(int error, const char *description) {
     fputs(description, stderr);
 }
@@ -54,11 +55,8 @@ GLFWwindow *DisplayManager::createDisplay() {
 
 
     glfwSetKeyCallback(window, key_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-//    if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
-//        std::cout << "Failed to initialize GLAD" << std::endl;
-////        return -1;
-//    }
     return window;
 }
 
@@ -93,4 +91,51 @@ DisplayManager::~DisplayManager() {
     glfwDestroyWindow(this->window);
     glfwTerminate();
     std::cout << "GLFW windows close" << '\n';
+}
+
+
+// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
+// ---------------------------------------------------------------------------------------------------------
+void DisplayManager::processInput(GLFWwindow *window, std::shared_ptr<Camera> &camera, float &deltaTime){
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        camera->ProcessKeyboard(FORWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        camera->ProcessKeyboard(BACKWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        camera->ProcessKeyboard(LEFT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        camera->ProcessKeyboard(RIGHT, deltaTime);
+}
+
+
+//// glfw: whenever the mouse moves, this callback is called
+//// -------------------------------------------------------
+std::shared_ptr<Camera> DisplayManager::camera =
+        std::make_shared<Camera>(glm::vec3(0.0f, 0.0f, 0.0f));
+
+const std::shared_ptr<Camera> &DisplayManager::getCamera() {
+    return camera;
+}
+float DisplayManager::lastX = WIDTH / 2.0f;
+float DisplayManager::lastY = HEIGHT / 2.0f;
+bool DisplayManager::firstMouse = true;
+void DisplayManager::mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    if (firstMouse)
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+
+    lastX = xpos;
+    lastY = ypos;
+
+    camera->ProcessMouseMovement(xoffset, yoffset);
 }
