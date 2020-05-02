@@ -26,18 +26,19 @@ public:
 
     virtual void getAllUniformLocations() = 0;
 
-    int getProgramId() { return this->programId; }
+    virtual GLuint getProgramId() { return this->programId; }
 
-protected:
     // With layout qualifier, you can forgo the use of glBindAttribLocation entirely
     // https://www.khronos.org/opengl/wiki/Layout_Qualifier_(GLSL)
 
     GLint getUniformLocation(std::string uniformName);
 
+protected:
+
     void loadUniform(GLint location, glm::mat4 matrix);
 
 private:
-    int programId = -1;
+    GLuint programId = -1;
     int vertexShaderId = -1;
     int fragmentShaderId = -1;
 

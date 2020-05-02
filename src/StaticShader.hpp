@@ -15,7 +15,7 @@
 class StaticShader : public ShaderProgram {
 public:
     StaticShader() :
-            ShaderProgram("shaders/basic3.vs.glsl", "shaders/basic3.fs.glsl") {};
+            ShaderProgram("resources/shaders/basic3.vs.glsl", "resources/shaders/basic3.fs.glsl") {};
 
     void loadTransformationMatrix(glm::mat4 &matrix);
 

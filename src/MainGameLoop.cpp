@@ -9,6 +9,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 
 #include "Loader.hpp"
+#include "model/Model.hpp"
 
 
 int main(int argc, char **argv) {
@@ -47,7 +48,9 @@ int main(int argc, char **argv) {
     Entity entity(texturedModel, std::move(glm::vec3(-0.3, 0.3, -3)),
                   0.0f, 0.0f, 0.0f, 1.0f);
 
-
+    // load models
+    // -----------
+    Model ourModel(std::filesystem::path("resources/models/backpack/backpack.obj"));
     float deltaTime = 0.0f;    // time between current frame and last frame
     float lastFrame = 0.0f;
     float currentFrame = 0.0f;

@@ -14,7 +14,7 @@
 #include <assimp/postprocess.h>
 
 #include "Mesh.hpp"
-#include <learnopengl/shader.h>
+//#include <learnopengl/shader.h>
 
 #include <string>
 #include <fstream>
@@ -41,7 +41,7 @@ public:
     }
 
     // draws the model, and thus all its meshes
-    void Draw(Shader shader) {
+    void Draw(ShaderProgram shader) {
         for (unsigned int i = 0; i < meshes.size(); i++)
             meshes[i].Draw(shader);
     }
