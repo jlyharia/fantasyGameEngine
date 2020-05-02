@@ -18,7 +18,5 @@ std::shared_ptr<Image> ImageLoader::loadImg(std::string fileName) {
     if (!data) {
         std::cout << "Failed to load texture" << std::endl;
     }
-//    Image* img = new Image(width, height, data);
     return std::make_shared<Image>(width, height, data);
-//    return img;
 }

@@ -17,7 +17,6 @@ void StaticShader::loadTransformationMatrix(glm::mat4 &matrix) {
 }
 
 void StaticShader::loadViewMatrix(glm::mat4 &&matrix) {
-//    glm::mat4 viewMatrix = Maths::createViewMatrix(camera);
     ShaderProgram::loadUniform(location_viewMatrix, matrix);
 }
 

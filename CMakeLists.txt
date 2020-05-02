@@ -19,23 +19,21 @@ include_module(GLEW)
 include_module(GLM)
 include_module(GLFW)
 include_module(ASSIMP)
-include_Boost()
+#include_Boost()
 message("-- CMAKE_SOURCE_DIR = " ${CMAKE_SOURCE_DIR})
 
 set(HEADER_FILES
         ${HEADER_FILES}
         ${CMAKE_SOURCE_DIR}/src/shaderloader.hpp
         ${CMAKE_SOURCE_DIR}/src/GLRenderContext.hpp
-        ${CMAKE_SOURCE_DIR}/src/BoostLoggingMacro.hpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/EBO_sample_handler.hpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/BufferHandler.hpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/Simple_triangle_handler.hpp
         ${CMAKE_SOURCE_DIR}/src/model/Mesh.hpp
-        ${CMAKE_SOURCE_DIR}/src/modelLoader/WavefrontLoader.hpp
         ${CMAKE_SOURCE_DIR}/src/VectorUtil.hpp
         ${CMAKE_SOURCE_DIR}/src/modelLoader/AssimpModelLoader.hpp
-        ${CMAKE_SOURCE_DIR}/src/model/Vertex.hpp
-        ${CMAKE_SOURCE_DIR}/src/model/MeshV2.cpp src/model/MeshV2.hpp
+        ${CMAKE_SOURCE_DIR}/src/model/MeshV2.cpp
+        ${CMAKE_SOURCE_DIR}/src/model/MeshV2.hpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/CubeHandler.hpp
         ${CMAKE_SOURCE_DIR}/src/DisplayManager.hpp
         ${CMAKE_SOURCE_DIR}/src/Loader.hpp
@@ -50,23 +48,19 @@ set(HEADER_FILES
         ${CMAKE_SOURCE_DIR}/src/Image.hpp
 #        ${CMAKE_SOURCE_DIR}/src/glad/glad.h
 #        ${CMAKE_SOURCE_DIR}/src/glad/khrplatform.h
-        ${CMAKE_SOURCE_DIR}/src/GLHandler.hpp
         ${CMAKE_SOURCE_DIR}/src/entities/Camera.hpp
         ${CMAKE_SOURCE_DIR}/src/toolbox/Maths.hpp
         ${CMAKE_SOURCE_DIR}/src/entities/Entity.hpp
         ${CMAKE_SOURCE_DIR}/src/toolbox/DebugHelper.hpp
+        ${CMAKE_SOURCE_DIR}/src/model/Model.hpp
         )
 
 set(SOURCE_FILES
         ${SOURCE_FILES}
         ${CMAKE_SOURCE_DIR}/src/shaderloader.cpp
-        ${CMAKE_SOURCE_DIR}/src/GLHandler.cpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/EBO_sample_handler.cpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/Simple_triangle_handler.cpp
-        ${CMAKE_SOURCE_DIR}/src/model/Mesh.cpp
-        ${CMAKE_SOURCE_DIR}/src/modelLoader/WavefrontLoader.cpp
         ${CMAKE_SOURCE_DIR}/src/modelLoader/AssimpModelLoader.cpp
-        ${CMAKE_SOURCE_DIR}/src/model/Vertex.cpp
         ${CMAKE_SOURCE_DIR}/src/bufferHandler/CubeHandler.cpp
         ${CMAKE_SOURCE_DIR}/src/DisplayManager.cpp
         ${CMAKE_SOURCE_DIR}/src/Loader.cpp
