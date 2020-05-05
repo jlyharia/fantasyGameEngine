@@ -1,10 +1,12 @@
 #version 330 core
-in vec2 pass_textureCoords;
-out vec4 frag_colour;
-in vec3 colour;
-uniform sampler2D textureSampler;
-void main() {
+out vec4 FragColor;
 
-//    frag_colour = vec4(colour, 1.0);
-    frag_colour = texture(textureSampler, pass_textureCoords);
+in vec2 TexCoords;
+
+uniform sampler2D texture_diffuse1;
+
+void main()
+{
+    FragColor = texture(texture_diffuse1, TexCoords);
+//    FragColor = vec4(0.3, 0.3, 0.3, 1.0);
 }

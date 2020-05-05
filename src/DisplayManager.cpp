@@ -57,6 +57,8 @@ GLFWwindow *DisplayManager::createDisplay() {
     glfwSetKeyCallback(window, key_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    // tell GLFW to capture our mouse
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     return window;
 }
 
@@ -73,8 +75,6 @@ void DisplayManager::framebuffer_size_callback(GLFWwindow *window, int width, in
 // Sync fps
 // http://forum.lwjgl.org/index.php?topic=5653.0
 void DisplayManager::updateDisplay() {
-
-    glfwPollEvents();
 
     /* Swap front and back buffers */
     glfwSwapBuffers(window);

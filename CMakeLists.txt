@@ -44,6 +44,7 @@ set(HEADER_FILES
         ${CMAKE_SOURCE_DIR}/src/entities/Entity.hpp
         ${CMAKE_SOURCE_DIR}/src/toolbox/DebugHelper.hpp
         ${CMAKE_SOURCE_DIR}/src/model/Model.hpp
+        ${CMAKE_SOURCE_DIR}/src/Shader.hpp
         )
 
 set(SOURCE_FILES

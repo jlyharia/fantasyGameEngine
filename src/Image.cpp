@@ -17,6 +17,10 @@ unsigned char *Image::getData() {
     return this->data;
 }
 
+int Image::getNrChannels(){
+    return this->nrChannels;
+}
+
 Image::~Image() {
     stbi_image_free(data);
     std::cout << "Destructor of Image is Invoked...\n";

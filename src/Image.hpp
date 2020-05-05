@@ -11,8 +11,8 @@
 
 class Image {
 public:
-    Image(int width, int height, unsigned char *data) :
-            width(width), height(height), data(data) {};
+    Image(int width, int height, int nrChannels, unsigned char *data) :
+            width(width), height(height), nrChannels(nrChannels), data(data) {};
 
     int getHeight();
 
@@ -20,11 +20,13 @@ public:
 
     unsigned char *getData();
 
+    int getNrChannels();
     virtual ~Image();
 
 private:
     int width;
     int height;
+    int nrChannels;
     unsigned char *data;
 };
 

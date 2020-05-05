@@ -29,6 +29,9 @@ public:
 
     static const std::shared_ptr<Camera> &getCamera();
 
+    const static int WIDTH = 720;
+    const static int HEIGHT = 480;
+
 private:
     static void error_callback(int error, const char *description);
 
@@ -36,8 +39,7 @@ private:
 
     static void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
-    const static int WIDTH = 720;
-    const static int HEIGHT = 480;
+
     const char *TITLE = "Fantasy game engine";
     GLFWwindow *window;
     static float lastX;
